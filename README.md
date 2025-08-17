@@ -3,8 +3,8 @@
 📍 *Universidad Tecnológica Nacional*  
 
 ## ✨ Estudiante  
-- **Nombre:** Jeffry Quispe*  
-- **Comisión:** Comision 8*  
+- **Nombre:** Jeffry Quispe
+- **Comisión:** Com 8 
 
 ## 📂 Descripción del Repositorio  
 Este repositorio almacena todas los trabajos prácticos realizados durante la cursada de **Programación 1**.  
