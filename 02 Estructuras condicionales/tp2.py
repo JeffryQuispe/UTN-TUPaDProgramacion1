@@ -149,25 +149,25 @@ user_mes2 = input("Hasta el mes (Diciembre , Marzo , Junio , Septiembre): ").low
 user_dia2 = int(input("Hasta el dia (1-31): "))
 
 if user_estacion == "n":
-    if (user_mes == "diciembre" and user_dia == 21) and (user_mes2 == "marzo" and user_dia2 == 20):
+    if (user_mes == "diciembre" and user_dia >= 21) and (user_mes2 == "marzo" and user_dia2 == 20):
         print("Invierno")
-    elif (user_mes == "marzo" and user_dia == 21) and (user_mes2 == "junio" and user_dia2 == 20):
+    elif (user_mes == "marzo" and user_dia >= 21) and (user_mes2 == "junio" and user_dia2 == 20):
         print("Primavera")
-    elif (user_mes == "junio" and user_dia == 21) and (user_mes2 == "septiembre" and user_dia2 == 20):
+    elif (user_mes == "junio" and user_dia >= 21) and (user_mes2 == "septiembre" and user_dia2 == 20):
         print("Verano")
-    elif (user_mes == "septiembre" and user_dia == 21) and (user_mes2 == "diciembre" and user_dia2 == 20):
+    elif (user_mes == "septiembre" and user_dia >= 21) and (user_mes2 == "diciembre" and user_dia2 == 20):
         print("Otoño")
     else:
         print("Meses no valido")
 
 elif user_estacion == "s":
-    if (user_mes == "diciembre" and user_dia == 21) and (user_mes2 == "marzo" and user_dia2 == 20):
+    if (user_mes == "diciembre" and user_dia >= 21) and (user_mes2 == "marzo" and user_dia2 == 20):
         print("Verano")
-    elif (user_mes == "marzo" and user_dia == 21) and (user_mes2 == "junio" and user_dia2 == 20):
+    elif (user_mes == "marzo" and user_dia >= 21) and (user_mes2 == "junio" and user_dia2 == 20):
         print("Otoño")
-    elif (user_mes == "junio" and user_dia == 21) and (user_mes2 == "septiembre" and user_dia2 == 20):
+    elif (user_mes == "junio" and user_dia >= 21) and (user_mes2 == "septiembre" and user_dia2 == 20):
         print("Invierno")
-    elif (user_mes == "septiembre" and user_dia == 21) and (user_mes2 == "diciembre" and user_dia2 == 20):
+    elif (user_mes == "septiembre" and user_dia >= 21) and (user_mes2 == "diciembre" and user_dia2 == 20):
         print("Primavera")
     else:
         print("Meses no valido")
