@@ -1,0 +1,5 @@
+Lapicera,120.5,30
+Cuaderno,250.0,50
+Resaltador,85.75,40
+jeffry,20.0,2
+jeffry,20.0,30
