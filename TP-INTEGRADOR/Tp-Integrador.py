@@ -1,7 +1,9 @@
 import csv
 import os
 
-CSV_FILE = "paises.csv"
+# Obtener la ruta del directorio actual del script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_FILE = os.path.join(SCRIPT_DIR, "Paises.csv")
 CSV_HEADER = ["Nombre", "Poblacion", "Superficie", "Continente"]
 
 # ---------- UTIL ----------- #
@@ -14,7 +16,6 @@ def asegurar_encabezado():
 
 def leer_datos():
     """Devuelve lista de filas (sin encabezado)."""
-    asegurar_encabezado()
     with open(CSV_FILE, newline='', encoding="utf-8-sig") as archivo:
         leer = csv.reader(archivo)
         next(leer, None)
@@ -29,7 +30,8 @@ def escribir_todas_las_filas(filas):
 
 # ---------- FUNCIONES ----------- #
 
-#------ Buscar ------------------#
+#------ Buscar ------------------#1
+
 def buscar_pais(prefijo):
     datos = leer_datos()
     encontrados = []
@@ -153,7 +155,6 @@ def ordenar_paises(columna, descendente=False):
 
 #------- Agregar país (mejorada, evita duplicados) -----#
 def agregar_pais():
-    asegurar_encabezado()
     nombre = input("Nombre del país: ").strip()
     if not nombre:
         print("❌ El nombre no puede estar vacío.")
@@ -257,7 +258,6 @@ def actualizar_pais():
 
 # ---------- MENÚ PRINCIPAL ----------- #
 def menu_principal():
-    asegurar_encabezado()
     opcion = 0
     while opcion != 7:
         print("""\n===== Menu Principal =====
