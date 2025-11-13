@@ -56,6 +56,9 @@ def rango_poblacion(min_pob, max_pob):
         try:
             poblacion = int(fila[1])
         except (ValueError, IndexError):
+            # Si la conversión a int falla (ValueError) o la fila no tiene índice 1 (IndexError),
+            # se ignora esa fila y se continúa con la siguiente. Esto evita que datos corruptos
+            # o filas incompletas rompan la ejecución del filtro.
             continue
         if min_pob <= poblacion <= max_pob:
             print(f"País: {fila[0]} - Población: {poblacion}")
@@ -68,6 +71,8 @@ def rango_superficie(min_sup, max_sup, descendente=False):
         try:
             superficie = int(fila[2])
         except (ValueError, IndexError):
+            # Misma lógica: si la superficie no es convertible a entero o falta columna,
+            # se salta esa fila en lugar de interrumpir el programa.
             continue
         if min_sup <= superficie <= max_sup:
             resultados.append((fila[0], superficie))
@@ -84,6 +89,8 @@ def mayor_menor_poblacion():
         try:
             poblacion = int(fila[1])
         except (ValueError, IndexError):
+            # Si hay un valor no numérico o falta la columna de población, lo ignoramos.
+            # Esto garantiza que solo se consideren filas válidas para el cálculo.
             continue
         if poblacion > max_pais[1]:
             max_pais = (fila[0], poblacion)
@@ -103,6 +110,8 @@ def promedio_poblacion():
         try:
             lista.append(int(fila[1]))
         except (ValueError, IndexError):
+            # Si no se puede convertir la población a entero o la columna falta,
+            # omitimos ese registro para no contaminar el promedio.
             continue
     if not lista:
         print("No hay datos para calcular promedio de población.")
@@ -118,6 +127,7 @@ def promedio_superficie():
         try:
             lista.append(int(fila[2]))
         except (ValueError, IndexError):
+            # Mismo enfoque: ignorar filas con superficie inválida o ausente.
             continue
     if not lista:
         print("No hay datos para calcular promedio de superficie.")
@@ -169,6 +179,8 @@ def agregar_pais():
         poblacion = int(input("Población (número entero): ").strip())
         superficie = int(input("Superficie (km2, número entero): ").strip())
     except ValueError:
+        # Si el usuario introduce texto donde se espera número, se captura aquí.
+        # Evita agregar registros con datos numéricos inválidos.
         print("❌ Población y superficie deben ser números enteros.")
         return
     continente = input("Continente: ").strip() or "Desconocido"
@@ -211,11 +223,14 @@ def actualizar_pais():
             print(f"{i}. {f[0]} | Población: {pobl} | Superficie: {sup} | Continente: {cont}")
         try:
             idx = int(input("Elija el número del país a actualizar: "))
+            # Aquí verificamos que la entrada sea un número y esté en rango.
+            # Si no es un número válido, se captura en el except y se evita fallo.
             if idx < 1 or idx > len(coincidencias):
                 print("❌ Índice inválido.")
                 return
             fila_seleccionada = coincidencias[idx-1]
         except ValueError:
+            # Si el usuario ingresó texto en lugar de un número, se evita que el programa falle.
             print("❌ Entrada inválida.")
             return
     else:
@@ -243,6 +258,7 @@ def actualizar_pais():
             nuevo_pob_val = int(nuevo_pob)
             datos[indice_real][1] = str(nuevo_pob_val)
         except ValueError:
+            # Si el usuario intenta poner algo no numérico, cancelamos la operación.
             print("❌ Población no válida. Operación cancelada.")
             return
     if nuevo_sup:
@@ -250,6 +266,7 @@ def actualizar_pais():
             nuevo_sup_val = int(nuevo_sup)
             datos[indice_real][2] = str(nuevo_sup_val)
         except ValueError:
+            # Misma protección para superficie: evita corruptar los datos con texto.
             print("❌ Superficie no válida. Operación cancelada.")
             return
 
@@ -271,6 +288,8 @@ def menu_principal():
         try:
             opcion = int(input("Elija una opción: "))
         except ValueError:
+            # Evita que el programa se detenga si el usuario introduce texto en lugar de un número.
+            # Se notifica y se vuelve a pedir la opción.
             print("❌ Opción no válida")
             continue
 
@@ -297,6 +316,7 @@ def menu_principal():
                 try:
                     sub = int(input("Elija una opción: "))
                 except ValueError:
+                    # Protección para que ingresar texto no rompa el sub-menú.
                     print("❌ Solo números")
                     continue
                 if sub == 1:
@@ -313,6 +333,7 @@ def menu_principal():
                         maxp = int(input("Máx Población: "))
                         rango_poblacion(minp, maxp)
                     except ValueError:
+                        # Si el usuario pone texto en los campos de rango se captura aquí.
                         print("❌ Solo números")
                 elif sub == 3:
                     try:
@@ -321,6 +342,7 @@ def menu_principal():
                         desc = input("Orden descendente? (s/n): ").lower() == "s"
                         rango_superficie(mins, maxs, desc)
                     except ValueError:
+                        # Protege contra entradas no numéricas para los rangos de superficie.
                         print("❌ Solo números")
 
         # --- Ordenar ---
@@ -335,6 +357,7 @@ def menu_principal():
                 try:
                     sub = int(input("Elija una opción: "))
                 except ValueError:
+                    # Evita fallo si el usuario escribe algo que no sea número.
                     print("❌ Solo números")
                     continue
                 if sub == 3:
@@ -362,6 +385,7 @@ def menu_principal():
                 try:
                     sub = int(input("Elija una opción: "))
                 except ValueError:
+                    # Protección ante entradas no numéricas en el sub-menú de estadísticas.
                     print("❌ Solo números")
                     continue
                 if sub == 1:
